@@ -1,1 +1,7 @@
 ---
+borg_version: "1.4.0"
+glibc_version: "2.36"
+pipx_version: "1.7.1"
+borg_binary_url: "https://github.com/borgbackup/borg/releases/download/{{ borg_version }}/borg-linux-glibc{{ glibc_version | replace('.', '') }}.tgz"
+borgmatic_pipx_bin_dir: "/opt/borgmatic/bin"
+borgmatic_schedule_oncalendar: "daily"
