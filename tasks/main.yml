@@ -2,6 +2,8 @@
 - name: "Include tool installation tasks"
   ansible.builtin.include_tasks: "install.yml"
 
+- name: "Include SSH key handling tasks"
+  ansible.builtin.include_tasks: "handle-ssh-keys.yml"
 
 - name: "Include tasks for configuring and running borgmatic"
   ansible.builtin.include_tasks: "configure-run.yml"
