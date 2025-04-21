@@ -1,7 +1,8 @@
 ---
-- name: "Ensure pip and dependencies are installed"
+- name: "Ensure that system dependencies are installed"
   ansible.builtin.apt:
     name:
+      - openssh-client
       - python3-pip
       - python3-venv
     state: present
