@@ -4,6 +4,9 @@
   gather_facts: false
   any_errors_fatal: true
 
+  vars:
+    repo_path: "/home/borg/test-repo"
+
   tasks:
     - name: "Include default vars"
       ansible.builtin.include_vars:
@@ -27,11 +30,11 @@
       ansible.builtin.command:
         cmd: "/usr/bin/borgmatic --version"
 
-    - name: "Check that the local test repo was created"
+    - name: "Check that the test repo was created"
       register: test_repo_readme
       failed_when: test_repo_readme.stat.exists is false
       ansible.builtin.stat:
-        path: "/var/backups/borgmatic/test/README"
+        path: "{{ repo_path }}"
 
     - name: "Check that the systemd timer for Borgmatic is up and running"
       register: timer
