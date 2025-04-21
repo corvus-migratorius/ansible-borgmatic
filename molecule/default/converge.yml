@@ -1,5 +1,20 @@
 ---
 - name: Converge
   hosts: all
+
+  pre_tasks:
+    - name: "Generate test data file"
+      ansible.builtin.copy:
+        dest: "/tmp/data"
+        content: "This is a test file!"
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
+        mode: "0644"
+
   roles:
-    - role: genlab.template
+    - role: genlab.borgmatic
+      borg_source_directories:
+        - "/tmp/data"
+      borg_repo_path: "/var/backups/borgmatic"
+      borg_repo_label: "test"
+      borg_encryption_passphrase: "secret"
