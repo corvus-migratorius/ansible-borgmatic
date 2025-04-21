@@ -71,7 +71,7 @@
     src: "{{ borgmatic_pipx_bin_dir }}/{{ item }}"
     dest: /usr/bin/{{ item }}
 
-- name: "Configure Borgmatic"
+- name: "Configure and run Borgmatic"
   ansible.builtin.include_role:
     name: maxhoesel.borgbackup.borgmatic
   vars:

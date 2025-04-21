@@ -1,6 +1,8 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    repo_path: "/var/backups/borgmatic/test"
 
   pre_tasks:
     - name: "Generate test data file"
@@ -11,10 +13,18 @@
         group: "{{ ansible_user_id }}"
         mode: "0644"
 
+    - name: "Ensure the repo path exists"
+      ansible.builtin.file:
+        path: "{{ repo_path }}"
+        state: directory
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
+        mode: "0755"
+
   roles:
     - role: genlab.borgmatic
       borg_source_directories:
         - "/tmp/data"
-      borg_repo_path: "/var/backups/borgmatic"
+      borg_repo_path: "{{ repo_path  }}"
       borg_repo_label: "test"
       borg_encryption_passphrase: "secret"
