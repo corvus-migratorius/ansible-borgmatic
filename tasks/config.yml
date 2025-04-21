@@ -26,9 +26,9 @@
 - name: "Add Uptime Kuma configuration"
   when: borg_uptime_kuma
   ansible.builtin.set_fact:
-    borgmatic_composite_config: "{{ borgmatic_composite_config | combine(borg_uptime_kuma) }}"
+    borgmatic_composite_config: "{{ borgmatic_composite_config | combine({'uptime_kuma': borg_uptime_kuma}) }}"
 
 - name: "Add Loki configuration"
   when: borg_loki
   ansible.builtin.set_fact:
-    borgmatic_composite_config: "{{ borgmatic_composite_config | combine(borg_loki) }}"
+    borgmatic_composite_config: "{{ borgmatic_composite_config | combine({'loki': borg_loki}) }}"
