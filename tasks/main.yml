@@ -10,6 +10,8 @@
     cache_valid_time: 3600
 
 - name: "Install pipx"
+  retries: 3
+  delay: 1
   ansible.builtin.pip:
     name: "pipx=={{ pipx_version }}"
     executable: pip3
@@ -20,6 +22,8 @@
     cmd: pipx ensurepath
 
 - name: "Install borgmatic via pipx"
+  retries: 3
+  delay: 1
   environment:
     PIPX_BIN_DIR: "{{ borgmatic_pipx_bin_dir }}"
   community.general.pipx:
