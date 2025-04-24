@@ -15,6 +15,7 @@
   ansible.builtin.pip:
     name: "pipx=={{ pipx_version }}"
     executable: pip3
+    break_system_packages: true
 
 - name: "Ensure pipx binary is available in PATH"
   changed_when: false
